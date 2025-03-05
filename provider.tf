@@ -2,25 +2,14 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      #version = "~> 5.0"
-      #version = "4.0"
-    }
+       }
   }
 }
 
-# Configure the AWS Provider
 provider "aws" {
-  region  = "us-east-1"
-  profile = "default"
-}
+  region = "us-east-1"
 
-terraform {
-  backend "s3" {
-    bucket = "hk-terrafrom-2112025"
-    key    = "us-east-1/ec2/ec2-ubuntu-micro/terraform.tfstate"
-    region = "us-east-1"
+  assume_role {
+    role_arn = "arn:aws:iam::820242924248:role/terraform-clould-role-test"
   }
 }
-
-
-
